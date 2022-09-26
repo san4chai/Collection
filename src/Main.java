@@ -1,13 +1,19 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
+    static ArrayList<String> shoppingList = new ArrayList<>();
+
+    public static void showShoppingList() {
+        System.out.println("Список покупок:");
+        for (int i = 0; i < shoppingList.size(); i++) {
+            System.out.println((i + 1) + ". " + shoppingList.get(i));
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        ArrayList<String> shoppingList = new ArrayList<String>();
         while (true) {
             System.out.println("Выберите операцию 1(добавить), 2(показать), 3(удалить), или введите 'end' для выхода из программы");
             String input = scanner.nextLine();
@@ -19,18 +25,9 @@ public class Main {
                 String e = scanner.nextLine();
                 shoppingList.add(e);
             } else if (Integer.parseInt(input) == 2) {
-                System.out.println("Список покупок:");
-                Iterator<String> it = shoppingList.iterator();
-                for (int i = 0; i < shoppingList.size(); i++) {
-                    String product = it.next();
-                    System.out.println((i + 1) + ". " + product);
-                }
+                showShoppingList();
             } else if (Integer.parseInt(input) == 3) {
-                Iterator<String> it = shoppingList.iterator();
-                for (int i = 0; i < shoppingList.size(); i++) {
-                    String product = it.next();
-                    System.out.println((i + 1) + ". " + product);
-                }
+                showShoppingList();
                 System.out.println("Какую покупку хотите удалить?");
                 Iterator<String> iter = shoppingList.iterator();
                 String f = scanner.nextLine();
@@ -47,12 +44,8 @@ public class Main {
                     }
                 }
             }
+
         }
-        System.out.println("Список покупок:");
-        Iterator<String> it = shoppingList.iterator();
-        for (int i = 0; i < shoppingList.size(); i++) {
-            String product = it.next();
-            System.out.println((i + 1) + ". " + product);
-        }
+        showShoppingList();
     }
 }
