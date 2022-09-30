@@ -1,14 +1,14 @@
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    static ArrayList<String> shoppingList = new ArrayList<>();
+    static List<String> list = new ArrayList<>();
 
-    public static void showShoppingList() {
+    public static void showList() {
         System.out.println("Список покупок:");
-        for (int i = 0; i < shoppingList.size(); i++) {
-            System.out.println((i + 1) + ". " + shoppingList.get(i));
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i));
         }
     }
 
@@ -22,30 +22,26 @@ public class Main {
             }
             if (Integer.parseInt(input) == 1) {
                 System.out.println("Какую покупку хотите добавить?");
-                String e = scanner.nextLine();
-                shoppingList.add(e);
+                String input1 = scanner.nextLine();
+                list.add(input1);
             } else if (Integer.parseInt(input) == 2) {
-                showShoppingList();
+                showList();
             } else if (Integer.parseInt(input) == 3) {
-                showShoppingList();
+                showList();
                 System.out.println("Какую покупку хотите удалить?");
-                Iterator<String> iter = shoppingList.iterator();
-                String f = scanner.nextLine();
-                if (f.matches("\\d")) {
-                    int a = Integer.parseInt(f);
-                    shoppingList.remove(a - 1);
+                String input3 = scanner.nextLine();
+                if (input3.matches("\\d")) {
+                    int a = Integer.parseInt(input3);
+                    list.remove(a - 1);
                 } else {
-
-                    while (iter.hasNext()) {
-                        String product = iter.next();
-                        if (product.equals(f)) {
-                            iter.remove();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).equals(input3)) {
+                            list.remove(i);
                         }
                     }
                 }
             }
-
         }
-        showShoppingList();
+        showList();
     }
 }
